@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Notebook Dell Inspiron 3505</title>
     <link href="producto.css" rel="stylesheet">
+    <script src="script.js" defer></script>
 </head>
 <body>
 <div id="grid-layout">
@@ -40,22 +41,26 @@
 
     <div id="comentarios">
         <h2>Comentarios</h2>
-        <p>El mejor producto del mundo! ✯✯✯✯✯</p>
+        <div id="listado-comentarios">
 
-        <p>El peor producto del mundo! ✯✰✰✰✰</p>
+        </div>
 
         <h2>¡Deja tu comentario!</h2>
         <form>
-            <label>Comentario: <textarea name="comentario"></textarea></label>
+            <label>Comentario: <textarea id="texto-comentario" name="comentario"></textarea></label>
 
             <label>
                 Calificación:
-                <label>1 <input type="radio" name="calificacion" value="1"></label>
-                <label>2 <input type="radio" name="calificacion" value="2"></label>
-                <label>3 <input type="radio" name="calificacion" value="3"></label>
-                <label>4 <input type="radio" name="calificacion" value="4"></label>
-                <label>5 <input type="radio" name="calificacion" value="5"></label>
+                <select id="puntaje-feedback">
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                </select>
             </label>
+
+            <input id="boton-enviar-comentario" type="submit" value="Enviar">
         </form>
     </div>
 </div>
