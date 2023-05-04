@@ -5,6 +5,20 @@ async function mostrarCantidadProductos() {
 
     let text = document.createTextNode(cantidadProductos);
     document.getElementById('cantidad-articulos').appendChild(text);
+
+    /*
+    Otra forma de hacerlo, con los then
+     fetch('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/statistics ')
+        .then((response) => {
+            return response.json();
+        })
+        .then((objeto) => {
+            let cantidadProductos = objeto.amount_of_products;
+
+            let text = document.createTextNode(cantidadProductos);
+            document.getElementById('cantidad-articulos').appendChild(text);
+        })
+     */
 }
 
 mostrarCantidadProductos();
