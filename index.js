@@ -1,3 +1,14 @@
+async function mostrarCantidadProductos() {
+    let response = await fetch('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/statistics ');
+    let objeto = await response.json();
+    let cantidadProductos = objeto.amount_of_products;
+
+    let text = document.createTextNode(cantidadProductos);
+    document.getElementById('cantidad-articulos').appendChild(text);
+}
+
+mostrarCantidadProductos();
+
 let productos = [
     {srcImagen: 'notebook1.jpg', nombre: 'Notebook Dell Inspiron 3505'},
     {srcImagen: 'notebook2.jpg', nombre: 'Notebook Dell Inspiron 3506'},
