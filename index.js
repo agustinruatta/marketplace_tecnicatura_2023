@@ -21,32 +21,30 @@ async function mostrarCantidadProductos() {
      */
 }
 
-mostrarCantidadProductos();
+async function mostrarProductos() {
+    let response = await fetch('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products');
+    let productos = await response.json();
 
-let productos = [
-    {srcImagen: 'notebook1.jpg', nombre: 'Notebook Dell Inspiron 3505'},
-    {srcImagen: 'notebook2.jpg', nombre: 'Notebook Dell Inspiron 3506'},
-    {srcImagen: 'notebook3.webp', nombre: 'Notebook Dell Inspiron 3507'},
-    {srcImagen: 'notebook1.jpg', nombre: 'Notebook Dell Inspiron 3505'},
-];
+    for(let producto of productos) {
+        let nombre = document.createElement('strong');
+        nombre.appendChild(document.createTextNode(producto.title))
 
-for (let producto of productos) {
-    let texto = document.createTextNode(producto.nombre)
+        let imagen = document.createElement('img');
+        imagen.src = producto.image_url;
 
-    let strong = document.createElement('strong');
-    strong.appendChild(texto);
+        let link = document.createElement('a');
+        link.href = 'producto.html';
 
-    let imagen = document.createElement('img');
-    imagen.src = producto.srcImagen;
+        link.appendChild(imagen);
+        link.appendChild(nombre);
 
-    let link = document.createElement('a');
-    link.href = 'producto.html'
-    link.appendChild(imagen)
-    link.appendChild(strong);
+        let div = document.createElement('div');
+        div.className = 'preview-producto';
+        div.appendChild(link);
 
-    let contenedor = document.createElement('div');
-    contenedor.className = 'preview-producto';
-    contenedor.appendChild(link);
-
-    document.getElementById('listado-productos').appendChild(contenedor);
+        document.getElementById('listado-productos').appendChild(div);
+    }
 }
+
+mostrarCantidadProductos();
+mostrarProductos();
