@@ -24,16 +24,13 @@
         <p id="texto-descripcion">{{ description }}</p>
 
         <h2>Características</h2>
-        <h3>Tipo computadora:</h3>
-        <ul>
-            <li>Precio: {{ notebooksTypes[0].price }}</li>
-            <li>RAM: {{ notebooksTypes[0].ramAmount }} GB</li>
-        </ul>
-        <h3>Tipo computadora:</h3>
-        <ul>
-            <li>Precio: {{ notebooksTypes[1].price }}</li>
-            <li>RAM: {{ notebooksTypes[1].ramAmount }} GB</li>
-        </ul>
+        <div v-for="notebookType in notebooksTypes">
+            <h3>Tipo computadora:</h3>
+            <ul>
+                <li>Precio: {{ notebookType.price }}</li>
+                <li>RAM: {{ notebookType.ramAmount }} GB</li>
+            </ul>
+        </div>
 
         <button @click="clickBotonCompra()">Comprar</button>
     </div>
