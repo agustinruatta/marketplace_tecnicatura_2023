@@ -19,9 +19,15 @@
     <div id="descripcion">
         <img v-for="imagen in imagenes" class="imagen-miniatura" :src="imagen" @mouseover="cambiarImagen(imagen)">
 
-        <p>Cantidad comprados: {{cantidadComprados}}</p>
+        <h2>Precio: $ {{ notebooksTypes[notebookSeleccionada].price }}</h2>
 
-        <p>Precio: $ {{ notebooksTypes[notebookSeleccionada].price }}</p>
+        <p>Carro de compras</p>
+        <ul>
+            <li v-for="(notebookComprada, indice) in notebooksCompradas" :key="indice">
+                {{ notebookComprada.ramAmount }}: $ {{ notebookComprada.price }}
+            </li>
+        </ul>
+        <p>Total: {{ total }}</p>
 
         <p id="texto-descripcion">{{ description }}</p>
 
@@ -29,10 +35,9 @@
         <ul>
             <li v-for="(notebookType, indice) in notebooksTypes" :key="indice">
                 <button @click="seleccionarTipoComputadora(indice)">RAM: {{ notebookType.ramAmount }}</button>
+                <button @click="clickBotonCompra(indice)">Comprar</button>
             </li>
         </ul>
-
-        <button @click="clickBotonCompra()">Comprar</button>
     </div>
 
     <a :href="factory_url" id="link-fabricante" target="_blank"
