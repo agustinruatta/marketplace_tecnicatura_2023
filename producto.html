@@ -25,6 +25,7 @@
         <ul>
             <li v-for="(notebookComprada, indice) in notebooksCompradas" :key="indice">
                 {{ notebookComprada.ramAmount }}: $ {{ notebookComprada.price }}
+                <button @click="eliminarCompra(indice)">Eliminar</button>
             </li>
         </ul>
         <p>Total: {{ total }}</p>

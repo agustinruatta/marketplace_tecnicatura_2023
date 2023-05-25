@@ -35,6 +35,9 @@ const app = Vue.createApp({
         },
         seleccionarTipoComputadora(indice) {
             this.notebookSeleccionada = indice;
+        },
+        eliminarCompra(indice) {
+            this.notebooksCompradas = this.notebooksCompradas.filter((value, index) => index !== indice);
         }
     },
     computed: {
