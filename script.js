@@ -16,12 +16,21 @@ const app = Vue.createApp({
                     "ramAmount": "16 GB",
                     "price": 122547
                 }
-            ]
+            ],
+            imagenes: [
+                'https://ar-media.hptiendaenlinea.com/catalog/product/8/V/8VW01LA-1_T1615590539.png',
+                'https://mla-s1-p.mlstatic.com/873896-MLA48241212970_112021-F.jpg',
+                'https://cloudfront-us-east-1.images.arcpublishing.com/infobae/IVLX7YP6TJBOJDVBRX5ZOUPBTY.jpg',
+                'https://www.muycomputer.com/wp-content/uploads/2021/01/Samsung_Notebook_Plus2_portada.jpg',
+            ],
         }
     },
     methods: {
         clickBotonCompra() {
             this.cantidadComprados += 1;
+        },
+        cambiarImagen(imagenUrl) {
+            this.image_url = imagenUrl;
         }
     }
 })

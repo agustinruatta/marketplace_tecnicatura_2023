@@ -17,6 +17,8 @@
     </div>
 
     <div id="descripcion">
+        <img v-for="imagen in imagenes" class="imagen-miniatura" :src="imagen" @mouseover="cambiarImagen(imagen)">
+
         <p>Cantidad comprados: {{cantidadComprados}}</p>
 
         <p id="texto-descripcion">{{ description }}</p>
