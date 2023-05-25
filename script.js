@@ -2,6 +2,7 @@ const app = Vue.createApp({
     data() {
         return {
             "id": 1,
+            cantidadComprados: 0,
             "title": "Notebook HP 14-dq2024la",
             "description": "Computadora HP orientado para gama media. Procesador Intel® Core™ i3 de 11.ª generación.  Windows 10 Home 64.  Unidad de estado sólido PCIe® NVMe™ M.2 de 256 GB . Pantalla de 14 pulgadas.",
             "image_url": "https://ar-media.hptiendaenlinea.com/catalog/product/8/V/8VW01LA-1_T1615590539.png",
@@ -16,6 +17,11 @@ const app = Vue.createApp({
                     "price": 122547
                 }
             ]
+        }
+    },
+    methods: {
+        clickBotonCompra() {
+            this.cantidadComprados += 1;
         }
     }
 })
