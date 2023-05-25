@@ -21,16 +21,16 @@
 
         <p>Cantidad comprados: {{cantidadComprados}}</p>
 
+        <p>Precio: $ {{ notebooksTypes[notebookSeleccionada].price }}</p>
+
         <p id="texto-descripcion">{{ description }}</p>
 
         <h2>Características</h2>
-        <div v-for="notebookType in notebooksTypes">
-            <h3>Tipo computadora:</h3>
-            <ul>
-                <li>Precio: {{ notebookType.price }}</li>
-                <li>RAM: {{ notebookType.ramAmount }} GB</li>
-            </ul>
-        </div>
+        <ul>
+            <li v-for="(notebookType, indice) in notebooksTypes" :key="indice">
+                <button @click="seleccionarTipoComputadora(indice)">RAM: {{ notebookType.ramAmount }}</button>
+            </li>
+        </ul>
 
         <button @click="clickBotonCompra()">Comprar</button>
     </div>
