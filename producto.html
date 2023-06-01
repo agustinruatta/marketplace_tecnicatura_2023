@@ -40,34 +40,12 @@
     <a :href="factory_url" id="link-fabricante" target="_blank"
        rel="noopener noreferrer">Link sitio web fabricante</a>
 
-    <div id="comentarios">
-        <h2>Comentarios</h2>
-        <div id="listado-comentarios">
-
-        </div>
-
-        <h2>¡Deja tu comentario!</h2>
-        <form>
-            <label>Comentario: <textarea id="texto-comentario" name="comentario"></textarea></label>
-
-            <label>
-                Calificación:
-                <select id="puntaje-feedback">
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                </select>
-            </label>
-
-            <input id="boton-enviar-comentario" type="submit" value="Enviar">
-        </form>
-    </div>
+    <formulario-evaluacion></formulario-evaluacion>
 </div>
 
 <script src="producto.js"></script>
-<script src="informacionNotebook.js"></script>
+<script src="components/informacionNotebook.js"></script>
+<script src="components/formularioEvaluacion.js"></script>
 <script>app.mount('#grid-layout')</script>
 </body>
 </html>
