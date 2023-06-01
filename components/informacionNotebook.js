@@ -1,14 +1,16 @@
 app.component('informacion-notebook', {
     template: `
-    <p id="texto-descripcion">{{ description }}</p>
-
-    <h2>Características</h2>
-    <ul>
-        <li v-for="(notebookType, indice) in notebooksTypes" :key="indice">
-            <button @click="seleccionarTipoComputadora(indice)">RAM: {{ notebookType.ramAmount }}</button>
-            <button @click="clickBotonCompra(indice)">Comprar</button>
-        </li>
-    </ul>
+    <div>
+        <p id="texto-descripcion">{{ description }}</p>
+    
+        <h2>Características</h2>
+        <ul>
+            <li v-for="(notebookType, indice) in notebooksTypes" :key="indice">
+                <button @click="seleccionarTipoComputadora(indice)">RAM: {{ notebookType.ramAmount }}</button>
+                <button @click="clickBotonCompra(indice)">Comprar</button>
+            </li>
+        </ul>
+    </div>
     `,
     props: {
         notebooksTypes: {
