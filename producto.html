@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <title>Notebook Dell Inspiron 3505</title>
     <link href="producto.css" rel="stylesheet">
-    <script src="script.js" defer></script>
     <script src="https://unpkg.com/vue@3.3.2/dist/vue.global.js"></script>
 </head>
 <body>
@@ -30,15 +29,12 @@
         </ul>
         <p>Total: {{ total }}</p>
 
-        <p id="texto-descripcion">{{ description }}</p>
-
-        <h2>Características</h2>
-        <ul>
-            <li v-for="(notebookType, indice) in notebooksTypes" :key="indice">
-                <button @click="seleccionarTipoComputadora(indice)">RAM: {{ notebookType.ramAmount }}</button>
-                <button @click="clickBotonCompra(indice)">Comprar</button>
-            </li>
-        </ul>
+        <informacion-notebook
+                :notebooksTypes="notebooksTypes"
+                @computadora-comprada="computadoraComprada"
+                @notebook-seleccionada="manejarNotebookSeleccionada"
+        >
+        </informacion-notebook>
     </div>
 
     <a :href="factory_url" id="link-fabricante" target="_blank"
@@ -68,7 +64,10 @@
             <input id="boton-enviar-comentario" type="submit" value="Enviar">
         </form>
     </div>
-
 </div>
+
+<script src="producto.js"></script>
+<script src="informacionNotebook.js"></script>
+<script>app.mount('#grid-layout')</script>
 </body>
 </html>
