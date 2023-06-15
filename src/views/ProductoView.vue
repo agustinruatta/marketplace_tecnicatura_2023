@@ -40,7 +40,6 @@
       </div>
 
 
-
       <formulario-evaluacion></formulario-evaluacion>
     </div>
   </div>
@@ -48,7 +47,7 @@
 <script>
 import FormularioEvaluacion from '@/components/FormularioEvaluacion'
 import InformacionNotebook from '@/components/InformacionNotebook';
-import axios from 'axios';
+import productoService from '@/services/ProductoService';
 
 export default {
   name: 'ProductoView',
@@ -99,16 +98,24 @@ export default {
     },
   },
   created() {
-    axios
-        .get('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products/1')
-        .then((respuesta) => {
-          this.id = respuesta.data.id;
-          this.title = respuesta.data.title;
-          this.description = respuesta.data.description;
-          this.image_url = respuesta.data.image_url;
-          this.factory_url = respuesta.data.factory_url;
-          this.notebooksTypes = respuesta.data.notebooksTypes;
-        })
+    productoService.getProducto().then((respuesta) => {
+      this.id = respuesta.data.id;
+      this.title = respuesta.data.title;
+      this.description = respuesta.data.description;
+      this.image_url = respuesta.data.image_url;
+      this.factory_url = respuesta.data.factory_url;
+      this.notebooksTypes = respuesta.data.notebooksTypes;
+    })
+
+    /*
+    let respuesta = await productoService.getProducto();
+    this.id = respuesta.data.id;
+    this.title = respuesta.data.title;
+    this.description = respuesta.data.description;
+    this.image_url = respuesta.data.image_url;
+    this.factory_url = respuesta.data.factory_url;
+    this.notebooksTypes = respuesta.data.notebooksTypes;
+    */
   }
 }
 </script>
