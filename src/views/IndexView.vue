@@ -9,29 +9,11 @@
     <p>Cantidad de artículos: <strong id="cantidad-articulos"></strong></p>
 
     <div id="listado-productos">
-      <div class="preview-producto">
-        <a href="producto.html">
-          <img :src="products[0].image_url">
-          <strong>{{ products[0].title }}</strong>
-        </a>
-      </div>
-      <div class="preview-producto">
-        <a href="producto.html">
-          <img :src="products[1].image_url">
-          <strong>{{ products[1].title }}</strong>
-        </a>
-      </div>
-      <div class="preview-producto">
-        <a href="producto.html">
-          <img :src="products[2].image_url">
-          <strong>{{ products[2].title }}</strong>
-        </a>
-      </div>
-      <div class="preview-producto">
-        <a href="producto.html">
-          <img :src="products[3].image_url">
-          <strong>{{ products[3].title }}</strong>
-        </a>
+      <div class="preview-producto" v-for="(producto, index) in products" :key="index">
+        <router-link to="/producto">
+          <img :src="producto.image_url">
+          <strong>{{ producto.title }}</strong>
+        </router-link>
       </div>
     </div>
   </div>
