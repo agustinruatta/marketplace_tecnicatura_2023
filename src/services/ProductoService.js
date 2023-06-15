@@ -1,12 +1,22 @@
 import axios from "axios";
 
+const apiClient = axios.create({
+    baseURL: 'https://my-json-server.typicode.com/agustinruatta/fake_json_server_db',
+    withCredentials: false,
+    headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+    }
+})
+
+
 export default {
     getProducto() {
-        return axios
-            .get('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products/1')
+        return apiClient
+            .get('/products/1')
     },
     getProductos() {
-        return axios
-            .get('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products/')
+        return apiClient
+            .get('/products')
     }
 }
