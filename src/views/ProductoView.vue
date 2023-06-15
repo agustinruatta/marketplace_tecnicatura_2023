@@ -1,43 +1,54 @@
 <template>
-  <div id="grid-layout">
-    <div id="cabecera">
-      <h1 id="titulo-producto">{{ title }}</h1>
+  <div v-if="this.id === null">
+    <h1>Cargando...</h1>
+  </div>
+  <div v-else>
+    <div id="grid-layout">
+      <div id="cabecera">
+        <h1 id="titulo-producto">{{ title }}</h1>
+      </div>
+
+      <div id="imagen-producto">
+        <img :src="image_url" id="imagen">
+      </div>
+
+      <div id="descripcion">
+        <img v-for="(imagen, indice) in imagenes" class="imagen-miniatura" :src="imagen"
+             @mouseover="cambiarImagen(imagen)" :key="indice">
+
+        <div v-if="notebooksTypes.length > 0">
+          <h2>Precio: $ {{ notebooksTypes[notebookSeleccionada].price }}</h2>
+        </div>
+
+        <p>Carro de compras</p>
+        <ul>
+          <li v-for="(notebookComprada, indice) in notebooksCompradas" :key="indice">
+            {{ notebookComprada.ramAmount }}: $ {{ notebookComprada.price }}
+            <button @click="eliminarCompra(indice)">Eliminar</button>
+          </li>
+        </ul>
+        <p>Total: {{ total }}</p>
+
+        <informacion-notebook
+            :notebooks-types="notebooksTypes"
+            @computadora-comprada="computadoraComprada"
+            @notebook-seleccionada="manejarNotebookSeleccionada"
+        >
+        </informacion-notebook>
+        <a :href="factory_url" id="link-fabricante" target="_blank"
+           rel="noopener noreferrer">Link sitio web fabricante</a>
+      </div>
+
+
+
+      <formulario-evaluacion></formulario-evaluacion>
     </div>
-    <div id="imagen-producto">
-      <img :src="image_url" id="imagen">
-    </div>
-
-    <div id="descripcion">
-      <img v-for="(imagen, indice) in imagenes" class="imagen-miniatura" :src="imagen" @mouseover="cambiarImagen(imagen)" :key="indice">
-
-      <h2>Precio: $ {{ notebooksTypes[notebookSeleccionada].price }}</h2>
-
-      <p>Carro de compras</p>
-      <ul>
-        <li v-for="(notebookComprada, indice) in notebooksCompradas" :key="indice">
-          {{ notebookComprada.ramAmount }}: $ {{ notebookComprada.price }}
-          <button @click="eliminarCompra(indice)">Eliminar</button>
-        </li>
-      </ul>
-      <p>Total: {{ total }}</p>
-
-      <informacion-notebook
-          :notebooks-types="notebooksTypes"
-          @computadora-comprada="computadoraComprada"
-          @notebook-seleccionada="manejarNotebookSeleccionada"
-      >
-      </informacion-notebook>
-    </div>
-
-    <a :href="factory_url" id="link-fabricante" target="_blank"
-       rel="noopener noreferrer">Link sitio web fabricante</a>
-
-    <formulario-evaluacion></formulario-evaluacion>
   </div>
 </template>
 <script>
 import FormularioEvaluacion from '@/components/FormularioEvaluacion'
-import InformacionNotebook from "@/components/InformacionNotebook";
+import InformacionNotebook from '@/components/InformacionNotebook';
+import axios from 'axios';
 
 export default {
   name: 'ProductoView',
@@ -47,20 +58,11 @@ export default {
   },
   data() {
     return {
-      id: 1,
-      title: "Notebook HP 14-dq2024la",
-      notebooksTypes: [
-        {
-          ramAmount: "8 GB",
-          price: 100000
-        },
-        {
-          ramAmount: "16 GB",
-          price: 122547
-        }
-      ],
-      "image_url": "https://ar-media.hptiendaenlinea.com/catalog/product/8/V/8VW01LA-1_T1615590539.png",
-      "factory_url": "https://www.hp.com/ar-es/shop/notebook-hp-14-dq2024la-3v8j6la.html",
+      id: null,
+      title: '',
+      notebooksTypes: [],
+      image_url: null,
+      factory_url: null,
       notebookSeleccionada: 0,
       notebooksCompradas: [],
       imagenes: [
@@ -89,12 +91,24 @@ export default {
   computed: {
     total() {
       let total = 0;
-      for(let notebookComprada of this.notebooksCompradas) {
+      for (let notebookComprada of this.notebooksCompradas) {
         total += notebookComprada.price;
       }
 
       return total;
     },
+  },
+  created() {
+    axios
+        .get('https://my-json-server.typicode.com/agustinruatta/fake_json_server_db/products/1')
+        .then((respuesta) => {
+          this.id = respuesta.data.id;
+          this.title = respuesta.data.title;
+          this.description = respuesta.data.description;
+          this.image_url = respuesta.data.image_url;
+          this.factory_url = respuesta.data.factory_url;
+          this.notebooksTypes = respuesta.data.notebooksTypes;
+        })
   }
 }
 </script>
