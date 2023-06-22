@@ -51,13 +51,17 @@ import productoService from '@/services/ProductoService';
 
 export default {
   name: 'ProductoView',
+  props: {
+    id: {
+      required: true,
+    }
+  },
   components: {
     FormularioEvaluacion,
     InformacionNotebook,
   },
   data() {
     return {
-      id: null,
       title: '',
       notebooksTypes: [],
       image_url: null,
@@ -98,8 +102,7 @@ export default {
     },
   },
   created() {
-    productoService.getProducto().then((respuesta) => {
-      this.id = respuesta.data.id;
+    productoService.getProducto(this.id).then((respuesta) => {
       this.title = respuesta.data.title;
       this.description = respuesta.data.description;
       this.image_url = respuesta.data.image_url;

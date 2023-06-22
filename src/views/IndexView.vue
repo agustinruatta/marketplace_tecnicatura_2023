@@ -13,7 +13,7 @@
         <h1>Cargando</h1>
       </div>
       <div v-else class="preview-producto" v-for="(producto, index) in products" :key="index">
-        <router-link to="/producto">
+        <router-link :to="{name: 'Producto', params: {id: producto.id}}">
           <img :src="producto.image_url">
           <strong>{{ producto.title }}</strong>
         </router-link>

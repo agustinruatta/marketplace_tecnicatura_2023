@@ -5,12 +5,13 @@ import ProductoView from '@/views/ProductoView.vue'
 const routes = [
   {
     path: '/',
-    name: 'index',
+    name: 'Index',
     component: IndexView,
   },
   {
-    path: '/producto',
-    name: 'producto',
+    path: '/producto/:id',
+    props: true,
+    name: 'Producto',
     component: ProductoView,
   }
 ]
