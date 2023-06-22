@@ -2,17 +2,16 @@
   <div id="app">
     <div id="buscador">
       <label>Buscar:</label>
-      <input type="text">
-      <button>Buscar</button>
+      <input type="text" v-model="filtro">
     </div>
 
     <p>Cantidad de artículos: <strong id="cantidad-articulos"></strong></p>
 
     <div id="listado-productos">
-      <div v-if="products.length === 0">
+      <div v-if="productosFiltrados.length === 0">
         <h1>Cargando</h1>
       </div>
-      <div v-else class="preview-producto" v-for="(producto, index) in products" :key="index">
+      <div v-else class="preview-producto" v-for="(producto, index) in productosFiltrados" :key="index">
         <router-link :to="{name: 'Producto', params: {id: producto.id}}">
           <img :src="producto.image_url">
           <strong>{{ producto.title }}</strong>
@@ -29,7 +28,17 @@ export default {
   name: 'IndexView',
   data() {
     return {
-      products: []
+      products: [],
+      filtro: '',
+    }
+  },
+  computed: {
+    productosFiltrados() {
+      if (this.filtro.trim() === '') {
+        return this.products;
+      } else {
+        return this.products.filter((producto) => producto.title.includes(this.filtro))
+      }
     }
   },
   async created() {
